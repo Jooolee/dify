@@ -20,6 +20,8 @@ from services.app_service import AppService
 from services.enterprise.enterprise_service import EnterpriseService
 from services.feature_service import FeatureService
 
+logger = logging.getLogger(__name__)
+
 
 class InstalledAppsListApi(Resource):
     @login_required
@@ -65,7 +67,7 @@ class InstalledAppsListApi(Resource):
                 ):
                     res.append(installed_app)
             installed_app_list = res
-            logging.info(f"installed_app_list: {installed_app_list}, user_id: {user_id}")
+            logger.debug(f"installed_app_list: {installed_app_list}, user_id: {user_id}")
 
         installed_app_list.sort(
             key=lambda app: (
